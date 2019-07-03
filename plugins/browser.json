@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.mrappstore.menu"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.mrappstore.menu"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.mrappstore.menu"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.mrappstore.menu"
+        }
+    },
+    "dependent_plugins": {}
+}
