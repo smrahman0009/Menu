@@ -69,6 +69,35 @@ function clearPhoto(){
     image.src = "";
 }
 
+function loadItem(){
+    var string = localStorage.getItem("key");
+
+    if (string == null) {
+        alert("Storage is empty");
+    }
+    else{
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(string,"text/xml");
+
+        itemName = xmlDoc.getElementsByTagName("name");
+        itemPrice = xmlDoc.getElementsByTagName("price");
+        itemImage = xmlDoc.getElementsByTagName("imgs");
+
+        var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
+
+        for (var i = 0; i < itemName.length; i++) {
+            printItem  = printItem +"<tr>"+
+            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
+            "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
+            "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
+            "</tr>";
+        }
+
+         document.getElementById("printItem").innerHTML = printItem;
+
+    }
+}
+
 
 function addItem(){
 
@@ -85,14 +114,14 @@ if (localStorage.getItem("key") == null) {
 }
 else alert("storage is allready created using this key");
 
- alert("value is: " + localStorage.getItem("key"));
+ //alert("value is: " + localStorage.getItem("key"));
 
  //////////////////////// ----------------////////////////////////
 
 //////////////////////// save image to the local storage //////////////////
 var image = document.getElementById('image');
 var imagePath = image.src;
-alert("imagePath : "+imagePath);
+//alert("imagePath : "+imagePath);
 
 var string = localStorage.getItem("key");
 parser = new DOMParser();
@@ -129,39 +158,90 @@ menu.appendChild(item);
 var item_string = new XMLSerializer().serializeToString(xmlDoc.documentElement);
 console.log(item_string);
 localStorage.setItem("key",item_string);
-alert("after modification: " + localStorage.getItem("key"));
+//alert("after modification: " + localStorage.getItem("key"));
+loadItem();
 
 }
 
-function loadItem(){
+
+
+function deleteItem(){
+    var itemFound = false;
+
     var string = localStorage.getItem("key");
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(string,"text/xml");
 
-    if (string == null) {
-        alert("Storage is empty");
-    }
-    else{
-        parser = new DOMParser();
-        xmlDoc = parser.parseFromString(string,"text/xml");
+    itemName = xmlDoc.getElementsByTagName("name");
 
-        itemName = xmlDoc.getElementsByTagName("name");
-        itemPrice = xmlDoc.getElementsByTagName("price");
-        itemImage = xmlDoc.getElementsByTagName("imgs");
 
-        var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
+    var item_name = document.forms["delete_item"]["delete_name"].value;
+        
 
-        for (var i = 0; i < itemName.length; i++) {
-            printItem  = printItem +"<tr>"+
-            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
-            "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
-            "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
-            "</tr>";
+
+    for (var i = 0; i < itemName.length; i++) {
+
+        if (item_name == itemName[i].childNodes[0].nodeValue) {
+
+            x = xmlDoc.getElementsByTagName("item")[i];
+            x.parentNode.removeChild(x);
+
+            alert("remove item: " + xmlDoc.getElementsByTagName("item")[i].childNodes[1].nodeValue );
+
+            itemFound = true;
         }
-
-         document.getElementById("printItem").innerHTML = printItem;
-
+    
+    }
+    
+    if (!itemFound) {alert("Entered Item Not found. Please Enter name correctly!!");}
+    else{
+        var item_string = new XMLSerializer().serializeToString(xmlDoc.documentElement);
+        console.log(item_string);
+        localStorage.setItem("key",item_string);
+        loadItem();
     }
 }
 
+function editItem(){
+    var itemFound = false;
+
+    var string = localStorage.getItem("key");
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(string,"text/xml");
+
+    itemName = xmlDoc.getElementsByTagName("name");
+    itemPrice = xmlDoc.getElementsByTagName("price");
+
+
+    var edit_name = document.forms["edit_item"]["edit_name"].value;
+        var edit_price = document.forms["edit_item"]["edit_price"].value;
+        
+
+
+    for (var i = 0; i < itemName.length; i++) {
+
+        if (edit_name == itemName[i].childNodes[0].nodeValue) {
+
+
+            itemName[i].childNodes[0].nodeValue = edit_name;
+            itemPrice[i].childNodes[0].nodeValue = edit_price;
+
+            alert("item Name "+itemName[i].childNodes[0].nodeValue+" Item Price "+itemPrice[i].childNodes[0].nodeValue);
+
+            itemFound = true;
+        }
+    
+    }
+    
+    if (!itemFound) {alert("Entered Item Not found. Please Enter name correctly!!");}
+    else{
+        var item_string = new XMLSerializer().serializeToString(xmlDoc.documentElement);
+        console.log(item_string);
+        localStorage.setItem("key",item_string);
+        loadItem();
+    }
+    
+}
 
 function test(){
     alert(localStorage.getItem("key"));
