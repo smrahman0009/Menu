@@ -2,7 +2,7 @@
 
 var flag = false;
 
-document.addEventListener('deviceready',test);
+document.addEventListener('deviceready',loadItem);
 
 function setLocalStorage(){
 if (localStorage.getItem("keyImage") == null) {
@@ -134,57 +134,42 @@ alert("after modification: " + localStorage.getItem("key"));
 }
 
 function loadItem(){
-var string = localStorage.getItem("key");
-parser = new DOMParser();
-xmlDoc = parser.parseFromString(string,"text/xml");
+    var string = localStorage.getItem("key");
 
-itemName = xmlDoc.getElementsByTagName("name");
-itemPrice = xmlDoc.getElementsByTagName("price");
-itemImage = xmlDoc.getElementsByTagName("imgs");
+    if (string == null) {
+        alert("Storage is empty");
+    }
+    else{
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(string,"text/xml");
 
-var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
+        itemName = xmlDoc.getElementsByTagName("name");
+        itemPrice = xmlDoc.getElementsByTagName("price");
+        itemImage = xmlDoc.getElementsByTagName("imgs");
 
-for (var i = 0; i < itemName.length; i++) {
-    printItem  = printItem +"<tr>"+
-    "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
-    "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
-    "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
-    "</tr>";
+        var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
+
+        for (var i = 0; i < itemName.length; i++) {
+            printItem  = printItem +"<tr>"+
+            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
+            "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
+            "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
+            "</tr>";
+        }
+
+         document.getElementById("printItem").innerHTML = printItem;
+
+    }
 }
 
- document.getElementById("printItem").innerHTML = printItem;
-}
-
-// function loadItem(){
-
-// var string = localStorage.getItem("key");
-// parser = new DOMParser();
-// xmlDoc = parser.parseFromString(string,"text/xml");
-
-
-// itemImage = xmlDoc.getElementsByTagName("imgs");
-
-// //alert("itemImage length: " + itemImage.length);
-
-// var printItem = "<tr><th>Item Pic</th></tr>";
-
-// for (var i = 0; i < itemImage.length; i++) {
-//     alert(itemImage[i].childNodes[0].nodeValue);
-//     printItem  = printItem +"<tr>"+
-//     "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
-//     "</tr>";
-    
-// }
-
-//  document.getElementById("printItem").innerHTML = printItem;
-// }
 
 function test(){
     alert(localStorage.getItem("key"));
 }
 
 function deleteAll(){
-localStorage.removeItem('key');
-localStorage.clear();
-alert("storage is clear");
+    localStorage.removeItem('key');
+    localStorage.clear();
+    document.getElementById("printItem").innerHTML = "";
+    alert("storage is clear");
 }
