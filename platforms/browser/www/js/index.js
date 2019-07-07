@@ -46,7 +46,7 @@ function onSuccess(imageUri){
 
     var image = document.getElementById('image');
     image.src = imageUri;
-    alert("image src: " + image.src);
+    //alert("image src: " + image.src);
     var imagePath = imageUri;
     //addItem(imagePath);
         //localStorage.setItem("key", image.src);
@@ -128,7 +128,15 @@ function b_loadItem(){
 }
 
 function addItem(){
+var item_name = document.forms["item_list"]["item_name"].value;
+var item_price = document.forms["item_list"]["item_price"].value;
 
+alert(item_name +" "+item_price);
+
+if (item_name == "" || item_price =="") {
+	alert("Please enter item name and price both");
+}
+else{
 /////////////////// local storage is crated //////////////////////
 if (localStorage.getItem("key") == null) {
 
@@ -156,9 +164,6 @@ parser = new DOMParser();
 xmlDoc = parser.parseFromString(string,"text/xml");
 console.log(string);
 var menu,item,imgs,imgsText, name,nameText, price, priceText;
-
-var item_name = document.forms["item_list"]["item_name"].value;
-var item_price = document.forms["item_list"]["item_price"].value;
 
 imgs = xmlDoc.createElement("imgs");
 imgsText = xmlDoc.createTextNode(imagePath);
@@ -189,6 +194,7 @@ localStorage.setItem("key",item_string);
 //alert("after modification: " + localStorage.getItem("key"));
 loadItem();
 
+}
 }
 
 

@@ -8,6 +8,11 @@
         <title>
             Menu
         </title>
+        <style type="text/css">
+        	.btn-width{
+        		width: 100%;
+        	}
+        </style>
 </head>
 <div class="container">
     <body style="margin-left: 5%; margin-right: 5%;">
@@ -29,7 +34,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text">Item name and price</span>
   </div>
-  <input type="submit" value="Add" class="btn btn-primary btn-lg btn-block" onclick="addItem();">
+  <input type="submit" value="Add" class="btn btn-primary btn-lg btn-block" onclick="addItem();loadItem();">
 </div>
 </form>
 
@@ -55,16 +60,22 @@
   <input type="submit" value="Delete" class="btn btn-primary btn-lg btn-block" onclick="deleteItem();">
 </div>
 </form>
- <div class="row">
- 	<div class="col-sm">
- 	<button type="button" class="btn btn-info" onclick="loadItem();">Display</button>
-    <button type="button" class="btn btn-danger" onclick="deleteAll();">Delete All</button>
-    <button type="button" class="btn btn-info" onclick="test();">test</button>
-    <button type="button" class="btn btn-info"><a href="index.html">Index</a></button>
+ <div class="row" style="margin-top: 5%;">
+ 	<div class="col-sm" style="margin: 1%;">
+ 		<button type="button" class="btn btn-info btn-width" onclick="loadItem();">Display</button>
+ 	</div>
+ 	<div class="col-sm" style="margin: 1%;">
+ 		 <button type="button" class="btn btn-danger btn-width" onclick="deleteAll();">Delete All</button>
+    
+ 	</div>
+ 	<div class="col-sm" style="margin: 1%;">
+ 		<button type="button" class="btn btn-info btn-width" onclick="test();">test</button>
+    	
+ 	</div>
+ 	<div class="col-sm" style="margin: 1%;">
+ 		<button type="button" class="btn btn-info btn-width"><a href="index.html">Back</a></button>
  	</div>
  </div>
-       
-        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </div>
