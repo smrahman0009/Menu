@@ -2,7 +2,7 @@
 
 var flag = false;
 
-document.addEventListener('deviceready',loadItem);
+document.addEventListener('deviceready',b_loadItem);
 
 function setLocalStorage(){
 if (localStorage.getItem("keyImage") == null) {
@@ -98,6 +98,34 @@ function loadItem(){
     }
 }
 
+function b_loadItem(){
+    var string = localStorage.getItem("key");
+
+    if (string == null) {
+        alert("Storage is empty");
+    }
+    else{
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(string,"text/xml");
+
+        itemName = xmlDoc.getElementsByTagName("name");
+        itemPrice = xmlDoc.getElementsByTagName("price");
+        itemImage = xmlDoc.getElementsByTagName("imgs");
+
+        var printItem = '';
+
+        for (var i = 0; i < itemName.length; i++) {
+            printItem  = printItem + '<div class="col-md-4"> <div class="card">' + '<img src='
+           
+            + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz" class="card-img-top"/> </div> </div>'
+            + '<div class="col-md-4 my-text">'+ itemPrice[i].childNodes[0].nodeValue + '</div>'
+            + '<div class="col-md-4 my-text">'+ itemName[i].childNodes[0].nodeValue + '</div>';
+        }
+
+         document.getElementById("my-row").innerHTML = printItem;
+
+    }
+}
 
 function addItem(){
 
@@ -252,4 +280,8 @@ function deleteAll(){
     localStorage.clear();
     document.getElementById("printItem").innerHTML = "";
     alert("storage is clear");
+}
+
+function pageAdmin(){
+    window.location = "admin.html";
 }
