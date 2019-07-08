@@ -29,20 +29,20 @@
   	</div>
 </div>
 <div class="input-group">
-  <input type="text"  class="form-control" name="item_name" id="item_name">
-  <input type="number"  class="form-control" name="item_price" min="0" id="item_price">
+  <input type="text"  class="form-control" name="item_name" id="item_name" required>
+  <input type="number"  class="form-control" name="item_price" min="0" id="item_price" required>
   <div class="input-group-prepend">
     <span class="input-group-text">Item name and price</span>
   </div>
-  <input type="submit" value="Add" class="btn btn-primary btn-lg btn-block" onclick="addItem();loadItem();">
+  <input type="submit" value="Add" class="btn btn-primary btn-lg btn-block" onclick="addItem();">
 </div>
 </form>
 
 <h4 style="text-align: center;">Edit Price</h4>
 <form name="edit_item" action="#">
 <div class="input-group">
-  <input type="text"  class="form-control" name="edit_name" id="edit_name">
-  <input type="number"  class="form-control" name="edit_price" min="0" id="edit_price">
+  <input type="text"  class="form-control" name="edit_name" id="edit_name" required>
+  <input type="number"  class="form-control" name="edit_price" min="0" id="edit_price" required>
   <div class="input-group-prepend">
     <span class="input-group-text">Item name and price</span>
   </div>
@@ -69,15 +69,17 @@
     
  	</div>
  	<div class="col-sm" style="margin: 1%;">
- 		<button type="button" class="btn btn-info btn-width" onclick="test();">test</button>
+ 		<button type="button" class="btn btn-info btn-width" onclick="clearDisplay();">Clear Display</button>
     	
  	</div>
  	<div class="col-sm" style="margin: 1%;">
- 		<button type="button" class="btn btn-info btn-width"><a href="index.html">Back</a></button>
+ 		<button type="button" class="btn btn-info btn-width" onclick="pageIndex();">Back</button>
  	</div>
  </div>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/index.js">
+        	loadItem();
+        </script>
     </div>
  </body>
 </html>

@@ -69,34 +69,7 @@ function clearPhoto(){
     image.src = "";
 }
 
-function loadItem(){
-    var string = localStorage.getItem("key");
 
-    if (string == null) {
-        alert("Storage is empty");
-    }
-    else{
-        parser = new DOMParser();
-        xmlDoc = parser.parseFromString(string,"text/xml");
-
-        itemName = xmlDoc.getElementsByTagName("name");
-        itemPrice = xmlDoc.getElementsByTagName("price");
-        itemImage = xmlDoc.getElementsByTagName("imgs");
-
-        var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
-
-        for (var i = 0; i < itemName.length; i++) {
-            printItem  = printItem +"<tr>"+
-            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
-            "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
-            "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
-            "</tr>";
-        }
-
-         document.getElementById("printItem").innerHTML = printItem;
-
-    }
-}
 
 function b_loadItem(){
     var string = localStorage.getItem("key");
@@ -130,11 +103,21 @@ function b_loadItem(){
 function addItem(){
 var item_name = document.forms["item_list"]["item_name"].value;
 var item_price = document.forms["item_list"]["item_price"].value;
+var image = document.getElementById('image');
+var imagePath = image.src;
 
-alert(item_name +" "+item_price);
 
-if (item_name == "" || item_price =="") {
-	alert("Please enter item name and price both");
+if (imagePath.search("admin.html") > 0) {
+	alert("Choose a image first");
+}
+else if (item_name == "") {
+	alert("Please enter item name");
+}
+else if(item_price =="") {
+	alert("Please enter item price");
+}
+else if (item_price < 0) {
+	alert("Please enter a valid item price");
 }
 else{
 /////////////////// local storage is crated //////////////////////
@@ -148,15 +131,14 @@ if (localStorage.getItem("key") == null) {
                             "</item>"+
                         "</menu>");
 }
-else alert("storage is allready created using this key");
+//else alert("storage is allready created using this key");
 
  //alert("value is: " + localStorage.getItem("key"));
 
  //////////////////////// ----------------////////////////////////
 
 //////////////////////// save image to the local storage //////////////////
-var image = document.getElementById('image');
-var imagePath = image.src;
+
 //alert("imagePath : "+imagePath);
 
 var string = localStorage.getItem("key");
@@ -200,6 +182,7 @@ loadItem();
 
 
 function deleteItem(){
+
     var itemFound = false;
 
     var string = localStorage.getItem("key");
@@ -210,17 +193,16 @@ function deleteItem(){
 
 
     var item_name = document.forms["delete_item"]["delete_name"].value;
-        
-
-
+     
     for (var i = 0; i < itemName.length; i++) {
 
         if (item_name == itemName[i].childNodes[0].nodeValue) {
 
             x = xmlDoc.getElementsByTagName("item")[i];
+            
+            alert("remove item: " + xmlDoc.getElementsByTagName("item")[i].childNodes[1].nodeValue );
             x.parentNode.removeChild(x);
 
-            alert("remove item: " + xmlDoc.getElementsByTagName("item")[i].childNodes[1].nodeValue );
 
             itemFound = true;
         }
@@ -276,7 +258,34 @@ function editItem(){
     }
     
 }
+function loadItem(){
+    var string = localStorage.getItem("key");
 
+    if (string == null) {
+        alert("Storage is empty");
+    }
+    else{
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(string,"text/xml");
+
+        itemName = xmlDoc.getElementsByTagName("name");
+        itemPrice = xmlDoc.getElementsByTagName("price");
+        itemImage = xmlDoc.getElementsByTagName("imgs");
+
+        var printItem = "<tr><th>Item Pic</th><th>Item Name</th><th>Item Price</th></tr>";
+
+        for (var i = 0; i < itemName.length; i++) {
+            printItem  = printItem +"<tr>"+
+            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>' + "</td>"+
+            "<td>" + itemName[i].childNodes[0].nodeValue + "</td>"+
+            "<td>" + itemPrice[i].childNodes[0].nodeValue + "</td>"+
+            "</tr>";
+        }
+
+         document.getElementById("printItem").innerHTML = printItem;
+
+    }
+}
 function test(){
     alert(localStorage.getItem("key"));
 }
@@ -288,6 +297,14 @@ function deleteAll(){
     alert("storage is clear");
 }
 
+function clearDisplay(){
+	 document.getElementById("printItem").innerHTML = "";
+}
+
 function pageAdmin(){
     window.location = "admin.html";
+}
+
+function pageIndex(){
+    window.location = "index.html";
 }
