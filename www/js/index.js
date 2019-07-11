@@ -103,12 +103,25 @@ function b_loadItem(){
 function addItem(){
 var item_name = document.forms["item_list"]["item_name"].value;
 var item_price = document.forms["item_list"]["item_price"].value;
+
 var image = document.getElementById('image');
 var imagePath = image.src;
+
+var myImg = document.querySelector("#image");
+var imageWidth = myImg.naturalWidth;
+var imageHeight = myImg.naturalHeight;
 
 
 if (imagePath.search("admin.html") > 0) {
 	alert("Choose a image first");
+}
+else if (imageWidth < 500 ) {
+    alert("Minimum width of the image should be 500px!");
+    alert("Image width=" + imageWidth + "px and " + "Image height=" + imageHeight + "px");
+}
+else if (imageHeight < 500 ) {
+    alert("Minimum height of the image should be 500px!");
+    alert("Image width=" + imageWidth + "px and " + "Image height=" + imageHeight + "px"); 
 }
 else if (item_name == "") {
 	alert("Please enter item name");
