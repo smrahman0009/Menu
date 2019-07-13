@@ -26,7 +26,7 @@ else alert("storage is allready created using this key");
 function setOptions(srcType) {
     var options = {
         // Some common settings are 20, 50, and 100
-        quality: 50,
+        quality: 80,
         destinationType: Camera.DestinationType.FILE_URI,
         // In this app, dynamically set the picture source, Camera or photo gallery
         sourceType: srcType,
@@ -34,6 +34,7 @@ function setOptions(srcType) {
         mediaType: Camera.MediaType.PICTURE,
         //allowEdit: true,
         correctOrientation: true  //Corrects Android orientation quirks
+
     }
     return options;
 }
@@ -45,6 +46,7 @@ function takePhoto(){
 function onSuccess(imageUri){
 
     var image = document.getElementById('image');
+    
     image.src = imageUri;
     //alert("image src: " + image.src);
     var imagePath = imageUri;
@@ -90,9 +92,9 @@ function b_loadItem(){
         for (var i = 0; i < itemName.length; i++) {
             printItem  = printItem + '<div class="col-md-4"> <div class="card">' + '<img src='
            
-            + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz" class="card-img-top"/> </div> </div>'
-            + '<div class="col-md-4 my-text">'+ itemPrice[i].childNodes[0].nodeValue + '</div>'
-            + '<div class="col-md-4 my-text">'+ itemName[i].childNodes[0].nodeValue + '</div>';
+            + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz" width="10" height="190"  class="card-img-top"/>'
+            + '</br> '+ itemName[i].childNodes[0].nodeValue + ' '
+            + itemPrice[i].childNodes[0].nodeValue + '</div> </div>';
         }
 
          document.getElementById("my-row").innerHTML = printItem;
@@ -105,6 +107,7 @@ var item_name = document.forms["item_list"]["item_name"].value;
 var item_price = document.forms["item_list"]["item_price"].value;
 
 var image = document.getElementById('image');
+
 var imagePath = image.src;
 
 var myImg = document.querySelector("#image");
@@ -188,7 +191,9 @@ console.log(item_string);
 localStorage.setItem("key",item_string);
 //alert("after modification: " + localStorage.getItem("key"));
 loadItem();
-
+    item_name = "";
+    item_price = "";
+    imagePath = "";
 }
 }
 
@@ -316,8 +321,21 @@ function clearDisplay(){
 
 function pageAdmin(){
     window.location = "admin.html";
+    // 
 }
 
 function pageIndex(){
     window.location = "index.html";
+    // navigator.app.exitApp();
 }
+
+function exitApp(){
+    navigator.app.exitApp();
+}
+
+function show(id) {
+    document.getElementById(id).style.visibility = "visible";
+  }
+  function hide(id) {
+    document.getElementById(id).style.visibility = "hidden";
+  }
