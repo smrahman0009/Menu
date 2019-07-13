@@ -218,7 +218,7 @@ function deleteItem(){
 
             x = xmlDoc.getElementsByTagName("item")[i];
             
-            alert("remove item: " + xmlDoc.getElementsByTagName("item")[i].childNodes[1].nodeValue );
+            // alert("remove item: " + xmlDoc.getElementsByTagName("item")[i].childNodes[1].nodeValue );
             x.parentNode.removeChild(x);
 
 
@@ -230,9 +230,10 @@ function deleteItem(){
     if (!itemFound) {alert("Entered Item Not found. Please Enter name correctly!!");}
     else{
         var item_string = new XMLSerializer().serializeToString(xmlDoc.documentElement);
-        console.log(item_string);
+        //console.log(item_string);
         localStorage.setItem("key",item_string);
         loadItem();
+        item_name = "";
     }
 }
 
@@ -248,7 +249,7 @@ function editItem(){
 
 
     var edit_name = document.forms["edit_item"]["edit_name"].value;
-        var edit_price = document.forms["edit_item"]["edit_price"].value;
+    var edit_price = document.forms["edit_item"]["edit_price"].value;
         
 
 
@@ -270,9 +271,11 @@ function editItem(){
     if (!itemFound) {alert("Entered Item Not found. Please Enter name correctly!!");}
     else{
         var item_string = new XMLSerializer().serializeToString(xmlDoc.documentElement);
-        console.log(item_string);
+        // console.log(item_string);
         localStorage.setItem("key",item_string);
         loadItem();
+        edit_name = "";
+        edit_price = "";
     }
     
 }
