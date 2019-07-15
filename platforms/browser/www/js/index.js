@@ -90,9 +90,9 @@ function b_loadItem(){
         var printItem = '';
 
         for (var i = 0; i < itemName.length; i++) {
-            printItem  = printItem + '<div class="col-md-4"> <div class="card">' + '<img src='
+            printItem  = printItem + '<div class="col-sm-4 indv1"> <div class="card indv2">' + '<img src='
            
-            + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz" width="10" height="190"  class="card-img-top"/>'
+            + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"  height="150"  class="card-img-top"/>'
             + '</br> '+ itemName[i].childNodes[0].nodeValue + ' '
             + itemPrice[i].childNodes[0].nodeValue + '</div> </div>';
         }
@@ -118,13 +118,13 @@ var imageHeight = myImg.naturalHeight;
 if (imagePath.search("admin.html") > 0) {
 	alert("Choose a image first");
 }
-else if (imageWidth < 500 ) {
-    alert("Minimum width of the image should be 500px!");
-    alert("Image width=" + imageWidth + "px and " + "Image height=" + imageHeight + "px");
+else if (imageWidth < 200 ) {
+    alert("Minimum width of the image should be 200 px!");
+    alert("Image width=" + imageWidth + " px and " + "Image height=" + imageHeight + " px");
 }
-else if (imageHeight < 500 ) {
-    alert("Minimum height of the image should be 500px!");
-    alert("Image width=" + imageWidth + "px and " + "Image height=" + imageHeight + "px"); 
+else if (imageHeight < 190 ) {
+    alert("Minimum height of the image should be 200 px!");
+    alert("Image width=" + imageWidth + " px and " + "Image height=" + imageHeight + " px"); 
 }
 else if (item_name == "") {
 	alert("Please enter item name");
