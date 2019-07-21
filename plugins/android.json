@@ -18,6 +18,9 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.mrappstore.menu"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "com.mrappstore.menu"
     }
   },
   "dependent_plugins": {}

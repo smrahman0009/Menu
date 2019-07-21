@@ -297,15 +297,15 @@ function two_column_display(){
         var printItem = "";
 
         for (var i = 0; i < itemName.length; i++) {
-            if (i%2 == 0) {
+            if ((i+1) % 3 == 1) {
                 printItem  = printItem +"<tr>";
             }
             printItem  = printItem +
-            "<td>" + ' <img width="100" height="100" ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>'+
-            "</br>" + itemName[i].childNodes[0].nodeValue + " "+
-            "" + itemPrice[i].childNodes[0].nodeValue + "</td>";
+            "<td>" + ' <img ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>'+
+            "</br>"+"<p class='font-price font-style'>" + itemPrice[i].childNodes[0].nodeValue + "</p>"+
+            "<h5 class='font-name font-style'>" + itemName[i].childNodes[0].nodeValue + "</h5> </td>";
 
-             if (i%2 == 1) {
+             if ((i+1) % 3 == 0) {
                 printItem  = printItem +"</tr>";
             }
         }
