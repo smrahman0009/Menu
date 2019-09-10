@@ -6,7 +6,7 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Menu</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
