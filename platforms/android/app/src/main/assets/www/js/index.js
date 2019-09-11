@@ -281,7 +281,12 @@ function editItem(){
 }
 
 function two_column_display(){
-      var string = localStorage.getItem("key");
+     var string = localStorage.getItem("key");
+     var str_cafe_name = localStorage.getItem("key_cafe_name");
+
+    if (str_cafe_name == null) {
+    	document.getElementById("cafe_name").innerHTML = "Cafe Sania";
+    }
 
     if (string == null) {
         alert("Storage is empty");
