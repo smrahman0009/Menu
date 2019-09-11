@@ -302,6 +302,7 @@ function two_column_display(){
             }
             printItem  = printItem +
             "<td>" + ' <img ' + 'src=' + itemImage[i].childNodes[0].nodeValue + 'alt ="zzz"/>'+
+            "</br>"+(i+1)+""+
             "</br>"+"<p class='font-price font-style'>" + itemPrice[i].childNodes[0].nodeValue + "</p>"+
             "<h5 class='font-name font-style'>" + itemName[i].childNodes[0].nodeValue + "</h5> </td>";
 

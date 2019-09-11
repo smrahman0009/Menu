@@ -21,5 +21,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res\menu_icon.png" />
     <preference name="fullscreen" value="true" />
 </widget>
