@@ -102,6 +102,7 @@ function b_loadItem(){
     }
 }
 
+
 function addItem(){
 var item_name = document.forms["item_list"]["item_name"].value;
 var item_price = document.forms["item_list"]["item_price"].value;
@@ -142,20 +143,11 @@ if (localStorage.getItem("key") == null) {
   alert("new storage is created");
   localStorage.setItem("key",
                         "<menu>"+
-                            "<item>" +
+                            "<item>"+
                                 
                             "</item>"+
                         "</menu>");
 }
-//else alert("storage is allready created using this key");
-
- //alert("value is: " + localStorage.getItem("key"));
-
- //////////////////////// ----------------////////////////////////
-
-//////////////////////// save image to the local storage //////////////////
-
-//alert("imagePath : "+imagePath);
 
 var string = localStorage.getItem("key");
 parser = new DOMParser();
@@ -282,14 +274,10 @@ function editItem(){
 
 function two_column_display(){
      var string = localStorage.getItem("key");
-     var str_cafe_name = localStorage.getItem("key_cafe_name");
-
-    if (str_cafe_name == null) {
-    	document.getElementById("cafe_name").innerHTML = "Cafe Sania";
-    }
-
+    
     if (string == null) {
         alert("Storage is empty");
+       
     }
     else{
         parser = new DOMParser();
@@ -299,6 +287,7 @@ function two_column_display(){
         itemPrice = xmlDoc.getElementsByTagName("price");
         itemImage = xmlDoc.getElementsByTagName("imgs");
 
+       
         var printItem = "";
 
         for (var i = 0; i < itemName.length; i++) {
@@ -317,7 +306,7 @@ function two_column_display(){
         }
 
          document.getElementById("print_two_column_display").innerHTML = printItem;
-
+         
     }
 }
 
